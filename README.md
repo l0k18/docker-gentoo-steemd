@@ -11,12 +11,12 @@ Then you can type `halp` and it will show you the short commands to perform all 
 functions:
 
         dkr  "sudo docker"
-       .run  "sudo docker run -v ~/steemd/data:/work -d  true --name steemd -t steemd"
-     .enter  "sudo docker exec -it steemd bash"
-       .log  "sudo docker logs --tail  30 -f steemd"
-      .stop  "sudo docker stop steemd"
-        .rm  "sudo docker rm steemd"
-     .build  "sudo docker build -t steemd ."
+       .run  "sudo docker run -v ~/docker-gentoo-portage/data:/work -d  true --name docker-gentoo-portage -t docker-gentoo-portage"
+     .enter  "sudo docker exec -it docker-gentoo-portage bash"
+       .log  "sudo docker logs --tail  30 -f docker-gentoo-portage"
+      .stop  "sudo docker stop docker-gentoo-portage"
+        .rm  "sudo docker rm docker-gentoo-portage"
+     .build  "sudo docker build -t docker-gentoo-portage ."
 
 I usually string these commands together when I am developing the Dockerfile, so
 to build it, if it was already built and you have changed the Dockerfile, you will need
