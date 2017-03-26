@@ -27,9 +27,10 @@ shared-file-size = 20G
 
 enable-plugin = witness 
 
-witness = "l0k1"
+# name of account in quotes
+witness = ""
 
-# primary
-#private-key = 5JiMte1AkZZpEiutKaqHC9BHXm246weY8iT5kk3VpWYj9rcUYQ5
+# primary (no quotes required for keys, two slots for a primary and secondary)
+private-key = 
 # secondary
-private_key = 5HzcP9T1twx79uL9CvXEXVnM6gmAuY4gqbFUX5XJc8N6iSs9X1L
+#private_key = 

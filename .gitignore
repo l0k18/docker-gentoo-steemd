@@ -1,0 +1,5 @@
+block_log*
+shared_memory*
+*.log
+config.ini
+*.json

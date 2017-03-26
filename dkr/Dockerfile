@@ -9,7 +9,7 @@ RUN emerge --sync
 RUN sed -i 's/CFLAGS=\"-O2 -pipe\"/CFLAGS=\"-Os -pipe\"/g' /etc/portage/make.conf
 
 # Enable the elliptic curve functions in openssl
-RUN sed -i 's/bindist/-bindist context python tools/g' /etc/portage/make.conf
+RUN sed -i 's/bindist/-bindist context mpi python tools/g' /etc/portage/make.conf
 
 RUN emerge --update world
 
@@ -54,5 +54,4 @@ RUN cd /root/steem/build; make install
 VOLUME /work
 WORKDIR /work                  
 
-CMD /usr/bin/tail -f /dev/null
-
+CMD tail -f /dev/null
