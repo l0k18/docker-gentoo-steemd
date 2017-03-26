@@ -28,8 +28,6 @@ RUN emerge readline
 RUN emerge perl 
 RUN emerge python
 
-#RUN emerge boost
-
 # Build Boost from version 1.57.0 snapshot
 RUN cd /root; BOOST_ROOT=/usr/local; \
     URL='http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'; \
