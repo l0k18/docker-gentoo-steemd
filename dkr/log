@@ -1,0 +1,649 @@
+Sending build context to Docker daemon 4.608 kB
+Step 1/8 : FROM gentoo/stage3-amd64
+ ---> 03bfe6984168
+Step 2/8 : RUN cd /usr ; wget -c http://distfiles.gentoo.org/snapshots/portage-latest.tar.xz;    tar xvf portage-latest.tar.xz; rm portage-latest.tar.xz
+ ---> Using cache
+ ---> 831e3beef741
+Step 3/8 : RUN emerge --sync >>/dev/null
+ ---> Using cache
+ ---> 27899111cb82
+Step 4/8 : RUN sed 's/\-O2/\-Os/g' /etc/portage/make.conf
+ ---> Using cache
+ ---> edb653e79bbf
+Step 5/8 : RUN emerge dev-vcs/git autoconf cmake libtool make pkg-config app-arch/bzip2 doxygen ncurses readline perl
+ ---> Using cache
+ ---> a5cd20855cb7
+Step 6/8 : RUN cd /root;     git clone https://github.com/boostorg/boost.git;     cd boost; git checkout tags/boost-1.57.0;     git submodule update --init --recursive;
+ ---> Using cache
+ ---> 135a531ed626
+Step 7/8 : RUN cd /root/boost;     ./bootstrap.sh;     ./b2 -j$(nproc) install
+ ---> Running in e1373ea990f3
+Building Boost.Build engine with toolset gcc... tools/build/src/engine/bin.linuxx86_64/b2
+Detecting Python version... 3.4
+Detecting Python root... [91m  File "<string>", line 1
+    import sys; print sys.prefix
+                        ^
+SyntaxError: invalid syntax
+[0m
+Unicode/ICU support for Boost.Regex?... not found.
+Generating Boost.Build configuration in project-config.jam...
+
+Bootstrapping is done. To build, run:
+
+    ./b2
+    
+To adjust configuration, edit 'project-config.jam'.
+Further information:
+
+   - Command line help:
+     ./b2 --help
+     
+   - Getting started guide: 
+     http://www.boost.org/more/getting_started/unix-variants.html
+     
+   - Boost.Build documentation:
+     http://www.boost.org/boost-build2/doc/html/index.html
+
+Performing configuration checks
+
+    - symlinks supported       : yes
+    - 32-bit                   : no
+    - 64-bit                   : yes
+    - arm                      : no
+    - mips1                    : no
+    - power                    : no
+    - sparc                    : no
+    - x86                      : yes
+    - lockfree boost::atomic_flag : no
+    - has_icu builds           : no
+warning: Graph library does not contain MPI-based parallel components.
+note: to enable them, add "using mpi ;" to your user-config.jam
+    - zlib                     : yes
+    - iconv (libc)             : yes
+    - icu                      : no
+    - icu (lib64)              : no
+    - compiler-supports-ssse3  : yes
+    - compiler-supports-avx2   : yes
+    - gcc visibility           : yes
+    - long double support      : yes
+warning: skipping optional Message Passing Interface (MPI) library.
+note: to enable MPI support, add "using mpi ;" to user-config.jam.
+note: to suppress this message, pass "--without-mpi" to bjam.
+note: otherwise, you can safely ignore this message.
+    - zlib                     : yes
+
+Component configuration:
+
+    - atomic                   : building
+    - chrono                   : building
+    - container                : building
+    - context                  : building
+    - coroutine                : building
+    - date_time                : building
+    - exception                : building
+    - filesystem               : building
+    - graph                    : building
+    - graph_parallel           : building
+    - iostreams                : building
+    - locale                   : building
+    - log                      : building
+    - math                     : building
+    - mpi                      : building
+    - program_options          : building
+    - python                   : building
+    - random                   : building
+    - regex                    : building
+    - serialization            : building
+    - signals                  : building
+    - system                   : building
+    - test                     : building
+    - thread                   : building
+    - timer                    : building
+    - wave                     : building
+
+...patience...
+...found 4250 targets...
+...updating 1193 targets...
+common.mkdir bin.v2/libs/context/build
+mklink-or-dir boost/thread
+mklink-or-dir boost/algorithm
+link.mklink boost/throw_exception.hpp
+link.mklink boost/static_assert.hpp
+mklink-or-dir boost/exception
+common.mkdir bin.v2/libs/thread/build/gcc-4.9.4/release
+link.mklink boost/lexical_cast.hpp
+link.mklink boost/atomic.hpp
+link.mklink boost/memory_order.hpp
+common.mkdir bin.v2/libs/coroutine
+mklink-or-dir boost/atomic
+mklink-or-dir boost/lexical_cast
+mklink-or-dir boost/iterator
+mklink-or-dir boost/range
+common.mkdir bin.v2/libs/thread/build/gcc-4.9.4/release/link-static
+link.mklink boost/concept_check.hpp
+link.mklink boost/function.hpp
+link.mklink boost/exception/exception.hpp
+link.mklink boost/detail/iterator.hpp
+mklink-or-dir boost/function
+mklink-or-dir boost/concept
+link.mklink boost/iterator.hpp
+common.mkdir bin.v2/libs/thread/build/gcc-4.9.4/release/link-static/threading-multi
+link.mklink boost/utility.hpp
+link.mklink boost/next_prior.hpp
+link.mklink boost/utility/result_of.hpp
+link.mklink boost/utility/declval.hpp
+link.mklink boost/utility/base_from_member.hpp
+link.mklink boost/utility/binary.hpp
+link.mklink boost/utility/identity_type.hpp
+link.mklink boost/checked_delete.hpp
+common.mkdir bin.v2/libs/thread/build/gcc-4.9.4/release/link-static/threading-multi/pthread
+link.mklink boost/utility/addressof.hpp
+link.mklink boost/detail/indirect_traits.hpp
+link.mklink boost/function_equal.hpp
+link.mklink boost/mem_fn.hpp
+link.mklink boost/detail/no_exceptions_support.hpp
+link.mklink boost/detail/sp_typeinfo.hpp
+link.mklink boost/integer.hpp
+link.mklink boost/ref.hpp
+link.mklink boost/integer_fwd.hpp
+link.mklink boost/integer_traits.hpp
+mklink-or-dir boost/bind
+mklink-or-dir boost/container
+mklink-or-dir boost/numeric
+link.mklink boost/detail/basic_pointerbuf.hpp
+link.mklink boost/detail/endian.hpp
+link.mklink boost/detail/lcast_precision.hpp
+link.mklink boost/array.hpp
+link.mklink boost/swap.hpp
+mklink-or-dir boost/functional
+mklink-or-dir boost/numeric/conversion
+link.mklink boost/get_pointer.hpp
+mklink-or-dir boost/move
+mklink-or-dir boost/date_time
+mklink-or-dir boost/chrono
+link.mklink boost/detail/interlocked.hpp
+mklink-or-dir boost/detail/winapi
+link.mklink boost/bind.hpp
+mklink-or-dir boost/io
+mklink-or-dir boost/integer
+link.mklink boost/detail/container_fwd.hpp
+link.mklink boost/intrusive_ptr.hpp
+link.mklink boost/is_placeholder.hpp
+link.mklink boost/visit_each.hpp
+link.mklink boost/shared_ptr.hpp
+mklink-or-dir boost/smart_ptr
+link.mklink boost/io_fwd.hpp
+link.mklink boost/operators.hpp
+link.mklink boost/enable_shared_from_this.hpp
+link.mklink boost/predef.h
+mklink-or-dir boost/ratio
+mklink-or-dir boost/typeof
+link.mklink boost/rational.hpp
+link.mklink boost/scoped_array.hpp
+link.mklink boost/exception_ptr.hpp
+mklink-or-dir boost/tuple
+link.mklink boost/optional.hpp
+mklink-or-dir boost/optional
+mklink-or-dir boost/intrusive
+link.mklink boost/aligned_storage.hpp
+link.mklink boost/detail/atomic_undef_macros.hpp
+link.mklink boost/detail/atomic_redef_macros.hpp
+link.mklink boost/utility/swap.hpp
+mklink-or-dir boost/exception/detail
+link.mklink boost/call_traits.hpp
+link.mklink boost/math_fwd.hpp
+link.mklink boost/detail/reference_content.hpp
+link.mklink boost/detail/call_traits.hpp
+link.mklink boost/none.hpp
+link.mklink boost/utility/compare_pointees.hpp
+link.mklink boost/utility/in_place_factory.hpp
+...on 100th target...
+link.mklink boost/exception/info.hpp
+link.mklink boost/exception/diagnostic_information.hpp
+mklink-or-dir boost/utility/detail
+link.mklink boost/none_t.hpp
+mklink-or-dir boost/coroutine
+link.mklink boost/thread.hpp
+common.mkdir bin.v2/libs/context/build/gcc-4.9.4
+link.mklink boost/exception/to_string_stub.hpp
+common.mkdir bin.v2/libs/date_time
+common.mkdir bin.v2/libs/coroutine/build
+common.mkdir bin.v2/libs/context/build/gcc-4.9.4/release
+link.mklink boost/exception/get_error_info.hpp
+link.mklink boost/exception/current_exception_cast.hpp
+link.mklink boost/chrono.hpp
+mklink-or-dir boost/align
+common.mkdir bin.v2/libs/context/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/coroutine/build/gcc-4.9.4
+link.mklink boost/exception/to_string.hpp
+mklink-or-dir boost/context
+link.mklink boost/detail/scoped_enum_emulation.hpp
+common.mkdir bin.v2/libs/date_time/build
+common.mkdir bin.v2/libs/date_time/build/gcc-4.9.4
+common.mkdir bin.v2/libs/coroutine/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/context/build/gcc-4.9.4/release/link-static/threading-multi
+mklink-or-dir boost/filesystem
+link.mklink boost/tokenizer.hpp
+common.mkdir bin.v2/libs/filesystem
+common.mkdir bin.v2/libs/filesystem/build
+link.mklink boost/detail/utf8_codecvt_facet.ipp
+link.mklink boost/token_iterator.hpp
+link.mklink boost/detail/bitmask.hpp
+link.mklink boost/detail/utf8_codecvt_facet.hpp
+common.mkdir bin.v2/libs/context/build/gcc-4.9.4/release/link-static/threading-multi/asm
+common.mkdir bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/filesystem/build/gcc-4.9.4
+link.mklink boost/token_functions.hpp
+common.mkdir bin.v2/libs/date_time/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi
+common.mkdir bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static
+mklink-or-dir boost/regex
+common.mkdir bin.v2/libs/filesystem/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi/detail
+common.mkdir bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static/threading-multi
+common.mkdir bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/regex/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi
+common.mkdir bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static/threading-multi/gregorian
+gcc.compile.asm bin.v2/libs/context/build/gcc-4.9.4/release/link-static/threading-multi/asm/jump_x86_64_sysv_elf_gas.o
+common.mkdir bin.v2/libs/regex/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi
+gcc.compile.asm bin.v2/libs/context/build/gcc-4.9.4/release/link-static/threading-multi/asm/make_x86_64_sysv_elf_gas.o
+gcc.archive bin.v2/libs/context/build/gcc-4.9.4/release/link-static/threading-multi/libboost_context.a
+common.copy /usr/local/lib/libboost_context.a
+gcc.compile.c++ bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi/detail/coroutine_context.o
+gcc.compile.c++ bin.v2/libs/thread/build/gcc-4.9.4/release/link-static/threading-multi/future.o
+gcc.compile.c++ bin.v2/libs/thread/build/gcc-4.9.4/release/link-static/threading-multi/pthread/once.o
+gcc.compile.c++ bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi/exceptions.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/windows_file_codecvt.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/codecvt_error_category.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/path_traits.o
+common.mkdir bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi/posix
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/utf8_codecvt_facet.o
+link.mklink boost/scoped_ptr.hpp
+gcc.compile.c++ bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static/threading-multi/gregorian/date_generators.o
+link.mklink boost/regex_fwd.hpp
+gcc.compile.c++ bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static/threading-multi/gregorian/greg_weekday.o
+link.mklink boost/regex.hpp
+link.mklink boost/cregex.hpp
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/portability.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/unique_path.o
+...patience...
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/icu.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/cpp_regex_traits.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/c_regex_traits.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/path.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/regex_debug.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/regex_raw_buffer.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/fileiter.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/static_mutex.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/regex_traits_defaults.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/w32_regex_traits.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/regex.o
+gcc.compile.c++ bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/operations.o
+libs/filesystem/src/operations.cpp:318:8: warning: 'bool {anonymous}::error(bool, const boost::system::error_code&, const boost::filesystem::path&, const boost::filesystem::path&, boost::system::error_code*, const string&)' defined but not used [-Wunused-function]
+   bool error(bool was_error, const error_code& result,
+        ^
+gcc.archive bin.v2/libs/filesystem/build/gcc-4.9.4/release/link-static/threading-multi/libboost_filesystem.a
+common.copy /usr/local/lib/libboost_filesystem.a
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/usinstances.o
+common.mkdir bin.v2/libs/graph
+common.mkdir bin.v2/libs/graph/build
+common.mkdir bin.v2/libs/graph/build/gcc-4.9.4
+common.mkdir bin.v2/libs/graph/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/graph/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/graph/build/gcc-4.9.4/release/link-static/threading-multi
+gcc.compile.c++ bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static/threading-multi/gregorian/greg_month.o
+mklink-or-dir boost/property_map
+link.mklink boost/concept_archetype.hpp
+...on 200th target...
+link.mklink boost/weak_ptr.hpp
+gcc.archive bin.v2/libs/date_time/build/gcc-4.9.4/release/link-static/threading-multi/libboost_date_time.a
+link.mklink boost/multi_index_container.hpp
+common.copy /usr/local/lib/libboost_date_time.a
+link.mklink boost/detail/allocator_utilities.hpp
+link.mklink boost/multi_index_container_fwd.hpp
+mklink-or-dir boost/multi_index
+mklink-or-dir boost/serialization
+mklink-or-dir boost/archive
+link.mklink boost/detail/lightweight_mutex.hpp
+link.mklink boost/foreach_fwd.hpp
+mklink-or-dir boost/mpi
+link.mklink boost/type_traits.hpp
+link.mklink boost/any.hpp
+link.mklink boost/smart_ptr.hpp
+link.mklink boost/type_index.hpp
+link.mklink boost/shared_array.hpp
+mklink-or-dir boost/type_index
+link.mklink boost/make_shared.hpp
+mklink-or-dir boost/graph
+link.mklink boost/foreach.hpp
+link.mklink boost/graph/graph_traits.hpp
+link.mklink boost/graph/dll_import_export.hpp
+mklink-or-dir boost/pending
+link.mklink boost/graph/graphviz.hpp
+link.mklink boost/pending/property.hpp
+link.mklink boost/graph/properties.hpp
+mklink-or-dir boost/pending/detail
+mklink-or-dir boost/graph/property_maps
+link.mklink boost/pending/detail/property.hpp
+link.mklink boost/graph/subgraph.hpp
+link.mklink boost/graph/graph_mutability_traits.hpp
+link.mklink boost/graph/adjacency_list.hpp
+link.mklink boost/pointee.hpp
+link.mklink boost/indirect_reference.hpp
+link.mklink boost/detail/is_incrementable.hpp
+link.mklink boost/unordered_set.hpp
+link.mklink boost/graph/graph_selectors.hpp
+mklink-or-dir boost/unordered
+mklink-or-dir boost/graph/detail
+link.mklink boost/detail/select_type.hpp
+link.mklink boost/pointer_to_other.hpp
+link.mklink boost/graph/named_graph.hpp
+link.mklink boost/pending/container_traits.hpp
+link.mklink boost/unordered_map.hpp
+link.mklink boost/graph/graph_concepts.hpp
+link.mklink boost/graph/adjacency_iterator.hpp
+link.mklink boost/graph/numeric_values.hpp
+link.mklink boost/graph/buffer_concepts.hpp
+link.mklink boost/graph/overloading.hpp
+link.mklink boost/graph/compressed_sparse_row_graph.hpp
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/wc_regex_traits.o
+link.mklink boost/graph/iteration_macros.hpp
+link.mklink boost/graph/filtered_graph.hpp
+link.mklink boost/detail/numeric_traits.hpp
+mklink-or-dir boost/spirit
+mklink-or-dir boost/xpressive
+link.mklink boost/compressed_pair.hpp
+link.mklink boost/iterator_adaptors.hpp
+mklink-or-dir boost/proto
+link.mklink boost/detail/atomic_count.hpp
+mklink-or-dir boost/fusion
+...patience...
+link.mklink boost/blank.hpp
+mklink-or-dir boost/function_types
+link.mklink boost/blank_fwd.hpp
+link.mklink boost/implicit_cast.hpp
+link.mklink boost/detail/compressed_pair.hpp
+link.mklink boost/detail/templated_streams.hpp
+mklink-or-dir boost/graph/distributed
+mklink-or-dir boost/property_tree
+link.mklink boost/graph/graphml.hpp
+mklink-or-dir boost/graph/parallel
+link.mklink boost/utility/value_init.hpp
+common.mkdir bin.v2/libs/iostreams
+common.mkdir bin.v2/libs/iostreams/build
+common.mkdir bin.v2/libs/iostreams/build/gcc-4.9.4
+common.mkdir bin.v2/libs/iostreams/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi
+mklink-or-dir boost/iostreams
+gcc.compile.c++ bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi/file_descriptor.o
+gcc.compile.c++ bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi/posix/stack_traits.o
+libs/coroutine/src/posix/stack_traits.cpp: In function 'void boost::coroutines::stacksize_limit_(rlimit*)':
+libs/coroutine/src/posix/stack_traits.cpp:48:15: warning: unused variable 'result' [-Wunused-variable]
+     const int result = ::getrlimit( RLIMIT_STACK, limit);
+               ^
+gcc.archive bin.v2/libs/coroutine/build/gcc-4.9.4/release/link-static/threading-multi/libboost_coroutine.a
+common.copy /usr/local/lib/libboost_coroutine.a
+gcc.compile.c++ bin.v2/libs/thread/build/gcc-4.9.4/release/link-static/threading-multi/pthread/thread.o
+gcc.archive bin.v2/libs/thread/build/gcc-4.9.4/release/link-static/threading-multi/libboost_thread.a
+common.copy /usr/local/lib/libboost_thread.a
+gcc.compile.c++ bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi/mapped_file.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/posix_api.o
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/encoding
+mklink-or-dir boost/locale
+gcc.compile.c++ bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi/gzip.o
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared
+gcc.compile.c++ bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi/bzip2.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/encoding/codepage.o
+...on 300th target...
+gcc.compile.c++ bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi/zlib.o
+gcc.archive bin.v2/libs/iostreams/build/gcc-4.9.4/release/link-static/threading-multi/libboost_iostreams.a
+common.copy /usr/local/lib/libboost_iostreams.a
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/format.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/formatting.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/wide_posix_api.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/ids.o
+In file included from ./boost/locale/boundary.hpp:13:0,
+                 from libs/locale/src/shared/ids.cpp:9:
+./boost/locale/boundary/segment.hpp: In function 'int boost::locale::boundary::details::compare_text(LeftIterator, LeftIterator, RightIterator, RightIterator)':
+./boost/locale/boundary/segment.hpp:30:35: warning: typedef 'right_iterator' locally defined but not used [-Wunused-local-typedefs]
+             typedef RightIterator right_iterator;
+                                   ^
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/date_time.o
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/util
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/generator.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/util/default_locale.o
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/cregex.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/util/codecvt_converter.o
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/posix
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/instances.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/util/info.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/util/locale_data.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/posix/codecvt.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/mo_lambda.o
+libs/locale/src/shared/mo_lambda.cpp:220:16: warning: 'boost::locale::gnu_gettext::lambda::plural_ptr boost::locale::gnu_gettext::lambda::{anonymous}::un_factory(int, boost::locale::gnu_gettext::lambda::plural_ptr)' defined but not used [-Wunused-function]
+     plural_ptr un_factory(int value,plural_ptr op)
+                ^
+common.mkdir bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/std
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/posix/collate.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/posix/converter.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/std/codecvt.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/localization_backend.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/std/collate.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/std/converter.o
+common.mkdir bin.v2/libs/log/build
+common.mkdir bin.v2/libs/log/build/gcc-4.9.4
+common.mkdir bin.v2/libs/log/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/log/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix
+common.mkdir bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi
+mklink-or-dir boost/log
+link.mklink boost/utility/explicit_operator_bool.hpp
+gcc.compile.c++ bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/winstances.o
+gcc.archive bin.v2/libs/regex/build/gcc-4.9.4/release/link-static/threading-multi/libboost_regex.a
+common.copy /usr/local/lib/libboost_regex.a
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/posix/posix_backend.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/shared/message.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/attribute_set.o
+mklink-or-dir boost/parameter
+mklink-or-dir boost/phoenix
+link.mklink boost/utility/string_ref_fwd.hpp
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/util/gregorian.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/code_conversion.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/std/std_backend.o
+gcc.compile.c++ bin.v2/libs/graph/build/gcc-4.9.4/release/link-static/threading-multi/graphml.o
+gcc.compile.c++ bin.v2/libs/graph/build/gcc-4.9.4/release/link-static/threading-multi/read_graphviz_new.o
+gcc.archive bin.v2/libs/graph/build/gcc-4.9.4/release/link-static/threading-multi/libboost_graph.a
+common.copy /usr/local/lib/libboost_graph.a
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/attribute_value_set.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/attribute_name.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/process_id.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/severity_level.o
+link.mklink boost/exception/errinfo_at_line.hpp
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/named_scope.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/thread_id.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/global_logger_storage.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/default_attribute_names.o
+link.mklink boost/variant.hpp
+mklink-or-dir boost/variant
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/posix/numeric.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/process_name.o
+mklink-or-dir boost/asio
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/timer.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/text_ostream_backend.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/once_block.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/thread_specific.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/record_ostream.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/timestamp.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/text_multifile_backend.o
+gcc.compile.c++ bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/std/numeric.o
+gcc.archive bin.v2/libs/locale/build/gcc-4.9.4/release/link-static/threading-multi/libboost_locale.a
+common.copy /usr/local/lib/libboost_locale.a
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/event.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/threadsafe_queue.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/exceptions.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/unhandled_exception_count.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/trivial.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/dump.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/core.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/dump_avx2.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/dump_ssse3.o
+...patience...
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/parser_utils.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/default_sink.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/syslog_backend.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/init_from_stream.o
+link.mklink boost/range.hpp
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/spirit_encoding.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/format_parser.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/named_scope_format_parser.o
+common.mkdir bin.v2/libs/math/build
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi
+...on 400th target...
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/..
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/../src
+common.mkdir bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/../src/tr1
+link.mklink boost/format.hpp
+mklink-or-dir boost/format
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/date_time_format_parser.o
+common.mkdir bin.v2/libs/math/config/gcc-4.9.4/release
+common.mkdir bin.v2/libs/math/config/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/math/config/gcc-4.9.4/release/link-static/threading-multi
+gcc.compile.c++ bin.v2/libs/math/config/gcc-4.9.4/release/link-static/threading-multi/has_long_double_support.o
+common.mkdir bin.v2/libs/program_options
+common.mkdir bin.v2/libs/program_options/build
+common.mkdir bin.v2/libs/program_options/build/gcc-4.9.4
+common.mkdir bin.v2/libs/program_options/build/gcc-4.9.4/release
+common.mkdir bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static
+common.mkdir bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi
+mklink-or-dir boost/program_options
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/filter_parser.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/settings_parser.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/text_file_backend.o
+gcc.archive bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/libboost_log.a
+common.copy /usr/local/lib/libboost_log.a
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/formatter_parser.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/config_file.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/matches_relation_factory.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/positional_options.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/cmdline.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/utf8_codecvt_facet.o
+gcc.compile.c++.pch bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/../src/tr1/pch.hpp.gch
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/convert.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/assoc_laguerre.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/beta.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/assoc_legendre.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/options_description.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_1.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_2.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/variables_map.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/winmain.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_3.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/parsers.o
+gcc.compile.c++ bin.v2/libs/program_options/build/gcc-4.9.4/release/link-static/threading-multi/value_semantic.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/default_filter_factory.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_1.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/init_from_settings.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_i.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/hermite.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_k.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/laguerre.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_2.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_j.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/legendre.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_neumann.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/assoc_laguerref.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_1f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/betaf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_legendre.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/assoc_legendref.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_3.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_2f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_3f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/expint.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/riemann_zeta.o
+gcc.compile.c++ bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/default_formatter_factory.o
+gcc.archive bin.v2/libs/log/build/gcc-4.9.4/release/link-static/log-api-unix/threading-multi/libboost_log_setup.a
+common.copy /usr/local/lib/libboost_log_setup.a
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_bessel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_neumann.o
+gcc.archive bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/libboost_math_tr1.a
+common.copy /usr/local/lib/libboost_math_tr1.a
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/hermitef.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/laguerref.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/legendref.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_if.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_1f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_2f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_kf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_jf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/assoc_laguerrel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_legendref.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_neumannf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/betal.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_3f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_1l.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_2l.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/comp_ellint_3l.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/assoc_legendrel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/expintf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/riemann_zetaf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_besself.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/hermitel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_neumannf.o
+gcc.archive bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/libboost_math_tr1f.a
+common.copy /usr/local/lib/libboost_math_tr1f.a
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/laguerrel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_1l.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_2l.o
+...on 500th target...
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/legendrel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_il.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_kl.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/acosh.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_bessel_jl.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/ellint_3l.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cyl_neumannl.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/asinh.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/atanh.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/expintl.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/sph_legendrel.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/copysign.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/expm1.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/fmin.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/fmax.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/erfc.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/cbrt.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/fpclassify.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/erf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/hypot.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/llround.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/log1p.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/lround.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/nextafter.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/round.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/trunc.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/lgamma.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/nexttoward.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/acoshf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/tgamma.o
+gcc.archive bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/libboost_math_c99.a
+common.copy /usr/local/lib/libboost_math_c99.a
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/asinhf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/riemann_zetal.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/atanhf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/copysignf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/expm1f.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/fminf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/fpclassifyf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/erff.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/fmaxf.o
+gcc.compile.c++ bin.v2/libs/math/build/gcc-4.9.4/release/link-static/threading-multi/erfcf.o
