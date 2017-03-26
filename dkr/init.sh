@@ -1,5 +1,5 @@
 #!/bin/bash
-export NAME="docker-gentoo-portage"
+export NAME="docker-gentoo-steemd"
 alias     dkr="sudo docker"
 alias    .run="sudo docker run -v ~/$NAME/data:/work -d=true --name $NAME -t $NAME"
 alias  .enter="sudo docker exec -it $NAME bash"
@@ -7,4 +7,4 @@ alias    .log="sudo docker logs --tail=30 -f $NAME"
 alias   .stop="sudo docker stop $NAME"
 alias     .rm="sudo docker rm $NAME"
 alias  .build="sudo docker build -t $NAME ."
-alias halp="sed 's/\$NAME/$NAME/g' init.sh|grep -v halp|grep -v export|grep -v bin\/bash|sed 's/alias //g'|sed 's/=/  /g'"
+alias halp="sed 's/\$NAME/$NAME/g' init|grep -v halp|grep -v export|grep -v bin\/bash|sed 's/alias //g'|sed 's/=/  /g'"
