@@ -53,7 +53,7 @@ efficient.
 
 The configuration of the Gentoo system inside the container is built with `-Os` 
 compiler optimisation flag enabled, so that most of the support libraries are probably
-smaller and faster than the ones that the host system ould use. Neither Boost nor 
+smaller and faster than the ones that the host system would use. Neither Boost nor 
 steemd is optimised this way, however. I may amend this in the future, but for
 now, this container is fully working and has a side benefit that following the 
 commands inside the Dockerfile you can also build `steemd` to run on a Gentoo server.
