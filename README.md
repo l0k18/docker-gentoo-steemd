@@ -5,7 +5,7 @@ In the `dkr` directory is a short shell script that sets some handy aliases, whi
 will need to run this docker container:
 
     cd dkr
-    source init
+    source init.sh
 
 Then you can type `halp` and it will show you the short commands to perform all the 
 functions:
