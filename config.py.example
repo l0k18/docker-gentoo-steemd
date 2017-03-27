@@ -1,0 +1,8 @@
+owner = "" # Witness account username
+url = "" # Witness announcement post
+account_creation_fee = "" # account creation fee: eg: "10.000 STEEM"
+maximum_block_size = "" # maximum block size (in bytes) "65536" is usual
+sbd_interest_rate = "" # interest paid on SBD eg "0000" is zero
+fee = "" #  "10.000 STEEM"
+block_signing_public_key = "" # public key matching private key on witness you will make active
+wif = "" # active private key of witness account

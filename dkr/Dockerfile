@@ -51,7 +51,9 @@ RUN cd /root/steem/build; make -j$(nproc) steemd
 RUN cd /root/steem/build; make -j$(nproc) cli_wallet
 RUN cd /root/steem/build; make install
 
+RUN emerge zsh
+
 VOLUME /work
 WORKDIR /work                  
 
-CMD tail -f /dev/null
+CMD steemd 1>>/work/steemd.log 2>>/work/steemd.log

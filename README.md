@@ -13,36 +13,47 @@ no matter where you move in your filesystem. The script can be edited with the c
 `.editsh`. Note that the halp command simply processes the script itself to produce
 the output, the code is the documentation, is the code.
 
-I usually string these commands together when I am developing the Dockerfile, so
-to build it, if it was already built and you have changed the Dockerfile, you will need
-to run it like this:
+Because it can be a bit confusing (it confused me for a long time) I will explain the
+basic procedure to using this, beyond what the help in the `init.sh` provides:
 
-    .stop;.rm;.build
+To build the image, `.build` will run the procedure defined in the `Dockerfile`. Then
+there will be an image you can see with `dkr ps -a` (probably at the top of the output).
 
-which will stop the existing one with the name (by default in the init file, it is
-`docker-gentoo-steemd`), remove the FS layers and start a build.
+To get the image running, type `.run` (this will also start the `steemd` which, with an empty `data`
+folder will begin syncing from scratch, and use an empty configuration). There is
+a file in `data/witness_node_data_dir/` called config.ini.example which will help
+you create a basic witness configuration, I have annotated it with comments to
+explain what you need to put in.
 
-By default it starts up a No-Op command (tail -f /dev/null) so you can manually enter to 
-start up `steemd`,but you can change this to automatically start steemd in the last line of the Dockerfile.
-To run and enter the container:
+It is confusing, but `.run` is very different to `.start`. The former initialises 
+a newly built container and starts it up, the latter starts an already initialised
+container again after you have stopped it. It will complain if you try to `.run`
+after `.run` has already been issued, and will only work if you `.stop` and `.rm`
+to remove the container. Then you will have to `.build` again. This is what you
+want to do if you edit the `Dockerfile`.
 
-    .run;.enter
+`.stop` will stop a running container, `.start` will start it again. `.log` will
+show you the log file output, which is created in `data/steemd.sh` and is there
+so that other scripts can monitor and parse the log file. If you use the 
+`sudo docker <image name> logs` file instead, you will see a notice that the
+logs are going to a log file and how to view them as they come down.
 
-You can also directly spawn `steemd` with the command `.steemd`
+`.enter` will let you run a shell inside the container and poke around if you want
+to do that (any changes will be lost on a `.stop;.rm;` though the contents of 
+`/work` are persistent outside of the container.
+
+The advantage of this arrangement is that even if you delete the Docker
+container (not this folder), you won't lose the block_log and configuration files.
 
 The data directory contains a volume that is mounted inside the container as `/work`
 which I have done so you can easily import `block_log` files or even the whole
 `blockchain` folder inside `witness_node_data_dir`. However, note that this by default
 will build v0.17.1 so an older `shared_memory.*` file will not work.
 
-The other advantage of this arrangement is that even if you delete the Docker 
-container, you won't lose the block_log and configuration files.
-
-If you build and then enter and run `steemd` it will function as a seed node only, but
-the config.ini does not specify a listen port (it will pick a random high port)
-nor is the Dockerfile configured to forward any ports inbound. However, it should be
-possible to have it replay, or sync up to date, and then you can stop it and add
-a witness account name and signing key.
+Lastly, in my `init.sh` script you also have two commands, one, `.editsh` lets you
+edit the `init.sh` file (after you first run it from the `dkr/` directory it will
+remember even if you edit it where it is) and the other is `.editdkr` which will
+let you edit the `Dockerfile`.
 
 This is a super simple, minimalistic docker container, designed in the way that *I* do
 things, which is usually different to other people. I think it is simpler and more
@@ -54,3 +65,12 @@ smaller and faster than the ones that the host system would use. Neither Boost n
 steemd is optimised this way, however. I may amend this in the future, but for
 now, this container is fully working and has a side benefit that following the 
 commands inside the Dockerfile you can also build `steemd` to run on a Gentoo server.
+
+You may notice several shell and python scripts in the root of this directory, these
+are not fully documented yet but are used to monitor a witness's log file using SSH,
+and using the file `config` your primary and secondary keys and various other things,
+for the script `monitor.sh` to use for your specific keys. `config.py` contains
+configurations for the `switch.py` command which sends a broadcast of the update_witness
+command which is used to switch over in the event of a primary witness node going offline
+or ceasing to operate and update its log file. I will complete these soon, including
+instructions on installing the prerequisites they need.

@@ -3,3 +3,5 @@ shared_memory*
 *.log
 config.ini
 *.json
+config
+config.py

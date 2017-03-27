@@ -1,0 +1,26 @@
+#!/bin/bash
+### Configuration for l0k1's compleat witness management system
+
+# witness account name
+USERNAME=""
+
+# witness account private key
+WIF=""
+
+# primary witness private key
+PRIMARYPRIVKEY=""
+
+# secondary witness private key
+SECONDARYPRIVKEY=""
+
+# primary witness public key
+PRIMARYPUBKEY=""
+
+# secondary witness public key
+SECONDARYPUBKEY=""
+
+# address of primary witness
+PRIMARYURL=""
+
+# address of secondary witness
+SECONDARYURL=""
