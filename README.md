@@ -8,15 +8,10 @@ will need to run this docker container:
     source init.sh
 
 Then you can type `halp` and it will show you the short commands to perform all the 
-functions:
-
-        dkr  "sudo docker"
-       .run  "sudo docker run -v ~/docker-gentoo-portage/data:/work -d  true --name docker-gentoo-portage -t docker-gentoo-portage"
-     .enter  "sudo docker exec -it docker-gentoo-portage bash"
-       .log  "sudo docker logs --tail  30 -f docker-gentoo-portage"
-      .stop  "sudo docker stop docker-gentoo-portage"
-        .rm  "sudo docker rm docker-gentoo-portage"
-     .build  "sudo docker build -t docker-gentoo-portage ."
+functions. The script stores its own location automatically so all commands will work 
+no matter where you move in your filesystem. The script can be edited with the command:
+`.editsh`. Note that the halp command simply processes the script itself to produce
+the output, the code is the documentation, is the code.
 
 I usually string these commands together when I am developing the Dockerfile, so
 to build it, if it was already built and you have changed the Dockerfile, you will need
@@ -27,11 +22,13 @@ to run it like this:
 which will stop the existing one with the name (by default in the init file, it is
 `docker-gentoo-steemd`), remove the FS layers and start a build.
 
-By default it starts up a No-Op command so you can manually enter to start up `steemd`,
-but you can change this to automatically start steemd in the last line of the Dockerfile.
+By default it starts up a No-Op command (tail -f /dev/null) so you can manually enter to 
+start up `steemd`,but you can change this to automatically start steemd in the last line of the Dockerfile.
 To run and enter the container:
 
     .run;.enter
+
+You can also directly spawn `steemd` with the command `.steemd`
 
 The data directory contains a volume that is mounted inside the container as `/work`
 which I have done so you can easily import `block_log` files or even the whole
