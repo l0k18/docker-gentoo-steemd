@@ -4,6 +4,7 @@ shared_memory*
 config.ini
 *.json
 config
+config.ini
 config.py
 *.pyc
 __pycache__
