@@ -26,7 +26,7 @@ tx = TransactionBuilder ()
 tx.appendOps (
   operations.Witness_update (
     **{ "owner": config.owner,
-        "url": config.url,
+        "url": config.witnessthread,
         "block_signing_key": config.block_signing_public_key,
         "props": { "account_creation_fee": config.account_creation_fee,
                    "maximum_block_size": config.maximum_block_size,

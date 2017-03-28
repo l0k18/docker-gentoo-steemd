@@ -6,7 +6,7 @@ import os
 # file but only this example file.
 
 owner = os.environ [ 'WITNESSNAME' ] # Witness account username
-url = os.environ [ 'SECONDARYURL' ] # Witness announcement post
+witnessthread = os.environ [ 'WITNESSTHREAD' ] # Witness announcement post
 account_creation_fee = "" # eg: '10.000 STEEM'
 maximum_block_size = "" # eg: '65536'
 sbd_interest_rate = "" # eg: '0000'

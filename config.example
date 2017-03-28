@@ -33,3 +33,6 @@ export PRIMARYPORT=""
 
 # threshold time in seconds since last log entry to trigger switch
 export THRESHOLD=45
+
+# witness thread for update_witness
+export WITNESSTHREAD=""
