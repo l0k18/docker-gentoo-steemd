@@ -1,8 +1,17 @@
-owner = "" # Witness account username
-url = "" # Witness announcement post
-account_creation_fee = "" # account creation fee: eg: "10.000 STEEM"
-maximum_block_size = "" # maximum block size (in bytes) "65536" is usual
-sbd_interest_rate = "" # interest paid on SBD eg "0000" is zero
-fee = "" #  "10.000 STEEM"
-block_signing_public_key = "" # public key matching private key on witness you will make active
-wif = "" # active private key of witness account
+import os
+# switch.py is invoked by monitor.sh which imports the 'config' file,
+# which contains the values below that are also used from 'config'
+# so these sensitive values are all in one place.     
+# The .gitignore by default will not upload the 'config' or this
+# file but only this example file.
+
+owner = os.environ [ 'WITNESSNAME' ] # Witness account username
+url = os.environ [ 'SECONDARYURL' ] # Witness announcement post
+account_creation_fee = "" # eg: '10.000 STEEM'
+maximum_block_size = "" # eg: '65536'
+sbd_interest_rate = "" # eg: '0000'
+fee = "" # eg: '10.000 STEEM'
+block_signing_public_key = os.environ [ 'SECONDARYPUBKEY' ]
+wif = os.environ [ 'WIF' ]
+quote = "" # eg: '1.010'
+node = "" # eg: 'wss://node.steem.ws'

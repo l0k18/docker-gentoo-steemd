@@ -4,14 +4,18 @@
 In the `dkr` directory is a short shell script that sets some handy aliases, which you
 will need to run this docker container:
 
-    cd dkr
     source init.sh
+
+Note that you can 'source' this file from any other part of the filesystem and it will
+still know where its' parent directory and all the bits are.
 
 Then you can type `halp` and it will show you the short commands to perform all the 
 functions. The script stores its own location automatically so all commands will work 
 no matter where you move in your filesystem. The script can be edited with the command:
 `.editsh`. Note that the halp command simply processes the script itself to produce
 the output, the code is the documentation, is the code.
+
+## Basic info about managing a Docker Witness instance
 
 Because it can be a bit confusing (it confused me for a long time) I will explain the
 basic procedure to using this, beyond what the help in the `init.sh` provides:
@@ -55,6 +59,21 @@ edit the `init.sh` file (after you first run it from the `dkr/` directory it wil
 remember even if you edit it where it is) and the other is `.editdkr` which will
 let you edit the `Dockerfile`.
 
+There is more commands now available in there, but the 'halp' command will provide enough
+information to use most of them.
+
+There is now a monitor script that can be used, and there is a command in the `init.sh`
+that launches it inside a screen session detached. Copy or rename the `config.example`
+and `config.py.example` to the same names without the `.example` ending and the monitor
+script will have all the details. Some of the parameters are unneccessary in the current
+configuration but I intend to add more functions that will use them (such as a manual
+toggle between your primary and secondary witness).
+
+There is also a price feed setter script that draws its numbers from coinmarketcap,
+it also draws on the the same configurations, and note that the `init.sh` brings the
+environment variables set in `config` into your environment along with all the aliases
+to make managing a witness is nice and easy.
+
 This is a super simple, minimalistic docker container, designed in the way that *I* do
 things, which is usually different to other people. I think it is simpler and more
 efficient.
@@ -66,11 +85,15 @@ steemd is optimised this way, however. I may amend this in the future, but for
 now, this container is fully working and has a side benefit that following the 
 commands inside the Dockerfile you can also build `steemd` to run on a Gentoo server.
 
-You may notice several shell and python scripts in the root of this directory, these
-are not fully documented yet but are used to monitor a witness's log file using SSH,
-and using the file `config` your primary and secondary keys and various other things,
-for the script `monitor.sh` to use for your specific keys. `config.py` contains
-configurations for the `switch.py` command which sends a broadcast of the update_witness
-command which is used to switch over in the event of a primary witness node going offline
-or ceasing to operate and update its log file. I will complete these soon, including
-instructions on installing the prerequisites they need.
+## Prerequisites
+
+The accessory scripts in this package assume a number of prerequisites, which are mostly
+generally already present. The exceptions are the python related stuff (not necessary for
+the basic witness operation but for the feeder and monitor they are required)
+
+For Ubuntu to install these prerequisites:
+
+    sudo apt install python3 python3-pip screen
+    sudo -H pip3 install asyncio requests piston-lib websockets
+
+For other distros, like Arch linux, the information will be added in the near future.

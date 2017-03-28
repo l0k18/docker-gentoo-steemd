@@ -2,25 +2,34 @@
 ### Configuration for l0k1's compleat witness management system
 
 # witness account name
-USERNAME=""
+export WITNESSNAME=""
 
 # witness account private key
-WIF=""
+export WIF=""
 
 # primary witness private key
-PRIMARYPRIVKEY=""
-
-# secondary witness private key
-SECONDARYPRIVKEY=""
+export PRIMARYPRIVKEY=""
 
 # primary witness public key
-PRIMARYPUBKEY=""
+export PRIMARYPUBKEY=""
+
+# secondary witness private key
+export SECONDARYPRIVKEY=""
 
 # secondary witness public key
-SECONDARYPUBKEY=""
+export SECONDARYPUBKEY=""
 
 # address of primary witness
-PRIMARYURL=""
+export PRIMARYURL=""
 
 # address of secondary witness
-SECONDARYURL=""
+export SECONDARYURL=""
+
+# location of log file on remote primary server
+export LOGFILE=""
+
+# port of primary server's SSH
+export PRIMARYPORT=""
+
+# threshold time in seconds since last log entry to trigger switch
+export THRESHOLD=45

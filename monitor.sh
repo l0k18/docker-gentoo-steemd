@@ -1,15 +1,30 @@
 #!/bin/bash
 source config
-    
+
+PINGFAIL=0
+
 while true
 do
-  if ! ping -c1 $URL &>/dev/null || (( `ssh -p 8008  $URL 'echo $(($(date +%s) - $(date +%s -r /home/loki/docker-gentoo-steemd-primary/data/steemd.log )))'` > 45 ))
+  if ! ping -c1 $PRIMARYURL >/dev/null
   then
-    echo "Last modified date more than 45 seconds ago, or unresponsive to ping - switching to secondary"
-    #WITNESS=$WITNESS WIF=$WIF ./switch
-    exit 0
-  fi  
-  echo "[`date +%Y%m%d%H%M%S`] Seconds since last log entry: `ssh -p 8008  $URL 'echo $(($(date +%s) - $(date +%s -r /home/loki/docker-gentoo-steemd-primary/data/steemd.log )))'`"
-  echo "[`date +%Y%m%d%H%M%S`] Server responded to ping test"
+    PINGFAIL=$(( PINGFAIL + 1 ))
+    echo "`date +%Y-%m-%d_%H:%M:%S` Witness server not responding to ping. Failover after 25 seconds"
+    if (( $PINGFAIL > 5 ))
+    then
+      echo "`date +%Y-%m-%d_%H:%M:%S` Witness server not responding to ping for 25 seconds. Switching to secondary"
+      ./switch.py
+      exit 1
+    fi
+  else
+    PINGFAIL=0
+    if (( (( `date +%s` - `ssh -p $PRIMARYPORT $PRIMARYURL date +%s -r $LOGFILE` )) > $THRESHOLD ))
+    then
+      echo "`date +%Y-%m-%d_%H:%M:%S` Log file is more than $THRESHOLD seconds old. Switching to secondary"
+      ./switch.py
+      exit 1
+    else
+      echo "`date +%Y-%m-%d_%H:%M:%S` Witness server up and log less than $THRESHOLD seconds old"
+    fi
+  fi
   sleep 5
 done

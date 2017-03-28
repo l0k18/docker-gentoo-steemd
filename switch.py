@@ -1,13 +1,10 @@
 #!/usr/bin/python3
 #
-# l0k1's monitor client and witness toggle
+# witness toggle
 #
-# Usage:
-# 
-# WIF="<posting active or master key for witness account>" \
-# WITNESS="<public key corresponding to private key on backup witness>" \
-# switch 
-#
+# Configuration requires environment variables pulled in by config.py
+# monitor.sh script pulls these in from 'config' and config.py takes
+# the ones needed for this script
 
 import asyncio
 import websockets
@@ -44,4 +41,4 @@ try:
   tx.broadcast ()
   print ( "Successfully switched to secondary witness" )
 except:
-  print ( "Transaction broadcast failed - DANGER WILL ROBINSON!" )
+  print ( "Transaction broadcast failed" )
