@@ -6,6 +6,14 @@ will need to run this docker container:
 
     source init.sh
 
+I recommend on the servers you use this script that you put this on your shell startup
+script, it will make it a lot simpler for you. While you are still in the `dkr` directory,
+run this command:
+
+    echo "source `pwd`/init.sh" >> ~/.bashrc
+
+Substitute `.bashrc` with `.zshrc` if you, like me, use zsh.
+
 Note that you can 'source' this file from any other part of the filesystem and it will
 still know where its' parent directory and all the bits are.
 
