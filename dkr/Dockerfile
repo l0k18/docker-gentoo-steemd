@@ -57,3 +57,4 @@ VOLUME /work
 WORKDIR /work                  
 
 CMD steemd 1>>/work/steemd.log 2>>/work/steemd.log
+CMD steemd --replay 1>>/work/steemd.log 2>>/work/steemd.log
