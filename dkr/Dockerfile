@@ -3,7 +3,6 @@ FROM gentoo/stage3-amd64
 RUN cd /usr ; wget -c http://distfiles.gentoo.org/snapshots/portage-latest.tar.xz;\
     tar xvf portage-latest.tar.xz; rm portage-latest.tar.xz
 
-RUN echo "forcing rebuild"
 RUN emerge --sync
 
 # Set compiler optimisation for minimising code size
