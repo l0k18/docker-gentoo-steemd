@@ -3,6 +3,7 @@ FROM gentoo/stage3-amd64
 RUN cd /usr ; wget -c http://distfiles.gentoo.org/snapshots/portage-latest.tar.xz;\
     tar xvf portage-latest.tar.xz; rm portage-latest.tar.xz
 
+RUN echo "forcing rebuild"
 RUN emerge --sync
 
 # Set compiler optimisation for minimising code size
@@ -57,3 +58,4 @@ VOLUME /work
 WORKDIR /work                  
 
 CMD steemd 1>>/work/steemd.log 2>>/work/steemd.log
+CMD steemd --replay 1>>/work/steemd.log 2>>/work/steemd.log
