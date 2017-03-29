@@ -7,6 +7,7 @@ then
   sudo docker stop $NAME
   sudo docker rm $NAME
   sudo docker build -t $NAME $DATADIR/dkr
+  echo "type '.run' to begin replay"
 else
   echo 'Disabling replay mode'
   head -n -1 $DATADIR/dkr/Dockerfile>$DATADIR/dkr/Dockerfile.replay
@@ -16,5 +17,6 @@ else
   sudo docker stop $NAME
   sudo docker rm $NAME
   sudo docker build -t $NAME $DATADIR/dkr
+  echo "type '.run' to restart with replay disabled"
 fi
 

@@ -44,9 +44,7 @@ alias  .feeder="screen -d -S feeder -m $DATADIR/feeder.py"
          ### [ start up feed setter script in a detached screen session ]
 alias  .screen="screen -r" # monitor or feeder <
          ### [ view feeder or monitor, name in the parameter. Ctrl-A then D to exit, Ctrl-C to kill process ]
-alias  .replay="if [ ! -f $DATADIR/.replay ];then;echo 'CMD steemd --replay 1>>/work/steemd.log 2>>/work/steemd.log'>>$DATADIR/dkr/Dockerfile;touch $DATADIR/.replay;sudo docker build -t $NAME $DATADIR/dkr;fi" 
-         ### [ enable blockchain replay. This should be done after .stop;.rm and to initiate replay, .run ]
-alias  .normal="if [ -f $DATADIR/.replay ];then;head -n -1 $DATADIR/dkr/Dockerfile>$DATADIR/dkr/Dockerfile.replay;rm $DATADIR/dkr/Dockerfile;mv $DATADIR/dkr/Dockerfile.replay $DATADIR/dkr/Dockerfile;rm $DATADIR/.replay;sudo docker build -t $NAME $DATADIR/dkr;fi"
-         ### [ disable blockchain replay. This should be done after .stop;.rm and to restart in normal mode, .run ]
+alias .tglrply="$DATADIR/togglereplay.sh" 
+         ### [ enable blockchain replay. stops and reconfigures docker, '.run' to start it again ]
 alias  halp="sed 's/\$NAME/$NAME/g' $DATADIR/dkr/init.sh|sed 's#\$DATADIR#$DATADIR#g'|grep -v NOPRINT|sed 's/alias //g'|sed 's/=\"/     \"/g'|sed 's/#/>/g'|less"
 ######### hit the 'q' key to exit help viewer <<<<<<<<<
