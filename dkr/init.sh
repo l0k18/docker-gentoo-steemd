@@ -18,6 +18,8 @@ alias   .start="sudo docker start $NAME"
          ### [ start the container that was previously '.stop'ed ]
 alias    .stop="sudo docker stop $NAME"
          ### [ stop the container, start it again with '.start' ]
+alias  .replay="sudo docker stop $NAME;sudo docker run -v $DATADIR/data:/work -d=true $NAME sh -c 'steemd --replay 1>>/work/steemd.log 2>>/work/steemd.log'"
+         ### [ replay blockchain (for after upgrade, after unclean shutdown or starting from recent block_log) ]
 alias   .steem="sudo docker exec -it $NAME steemd"
          ### [ start up steemd inside the container attached to current terminal ]
 alias  .status="ps avx|grep steemd|grep -v grep|grep -v zsh|grep -v docker"
@@ -44,7 +46,7 @@ alias  .feeder="screen -d -S feeder -m $DATADIR/feeder.py"
          ### [ start up feed setter script in a detached screen session ]
 alias  .screen="screen -r" # monitor or feeder <
          ### [ view feeder or monitor, name in the parameter. Ctrl-A then D to exit, Ctrl-C to kill process ]
-alias .tglrply="$DATADIR/togglereplay.sh" 
-         ### [ enable blockchain replay. stops and reconfigures docker, '.run' to start it again ]
+alias   .dirty="$DATADIR/dirtycache.sh"
+         ### [ set kernel disk cache parameters to decrease disk I/O ]
 alias  halp="sed 's/\$NAME/$NAME/g' $DATADIR/dkr/init.sh|sed 's#\$DATADIR#$DATADIR#g'|grep -v NOPRINT|sed 's/alias //g'|sed 's/=\"/     \"/g'|sed 's/#/>/g'|less"
 ######### hit the 'q' key to exit help viewer <<<<<<<<<
