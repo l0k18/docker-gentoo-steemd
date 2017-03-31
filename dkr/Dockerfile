@@ -43,9 +43,7 @@ RUN export CXXFLAGS='-Os -pipe'; cd /root; BOOST_ROOT=/usr/local; \
     rm -rf boost* \
     exit 0
 
-RUN echo
-
-RUN cd /root; git clone https://github.com/steemit/steem
+RUN cd /root; git clone https://github.com/steemit/steem -b v0.18.2
 RUN cd /root/steem; git submodule update --init --recursive
 RUN cd /root/steem; mkdir build
 RUN cd /root/steem/build; export CXXFLAGS='-Os -pipe'; cmake -DCMAKE_BUILD_TYPE=Release ..
