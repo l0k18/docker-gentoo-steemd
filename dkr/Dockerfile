@@ -29,7 +29,7 @@ RUN emerge perl
 RUN emerge python
 
 # Build Boost from version 1.57.0 snapshot
-RUN cd /root; BOOST_ROOT=/usr/local; \
+RUN export CXXFLAGS='-Os -pipe'; cd /root; BOOST_ROOT=/usr/local; \
     URL='http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'; \
     wget -c "$URL" -O boost_1_57_0.tar.bz2; \
     [ $( sha256sum boost_1_57_0.tar.bz2 | cut -d ' ' -f 1 ) == \
@@ -43,10 +43,12 @@ RUN cd /root; BOOST_ROOT=/usr/local; \
     rm -rf boost* \
     exit 0
 
+RUN echo
+
 RUN cd /root; git clone https://github.com/steemit/steem
 RUN cd /root/steem; git submodule update --init --recursive
 RUN cd /root/steem; mkdir build
-RUN cd /root/steem/build; cmake -DCMAKE_BUILD_TYPE=Release ..
+RUN cd /root/steem/build; export CXXFLAGS='-Os -pipe'; cmake -DCMAKE_BUILD_TYPE=Release ..
 RUN cd /root/steem/build; make -j$(nproc) steemd
 RUN cd /root/steem/build; make -j$(nproc) cli_wallet
 RUN cd /root/steem/build; make install
