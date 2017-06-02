@@ -30,20 +30,17 @@ RUN emerge python
 
 # Build Boost from version 1.57.0 snapshot
 RUN export CXXFLAGS='-Os -pipe'; cd /root; BOOST_ROOT=/usr/local; \
-    URL='http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'; \
-    wget -c "$URL" -O boost_1_57_0.tar.bz2; \
-    [ $( sha256sum boost_1_57_0.tar.bz2 | cut -d ' ' -f 1 ) == \
-      "910c8c022a33ccec7f088bd65d4f14b466588dda94ba2124e78b8c57db264967" ] \
-      || ( echo 'Corrupt download' ; exit 1 ); \
-    tar xjf boost_1_57_0.tar.bz2; \
-    cd boost_1_57_0; \
+    URL='https://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2/download'; \
+    wget -c "$URL" -O boost_1_60_0.tar.bz2; \
+    tar xjf boost_1_60_0.tar.bz2; \
+    cd boost_1_60_0; \
     ./bootstrap.sh "--prefix=$BOOST_ROOT"; \
     ./b2 -j$(nproc) install; \
     cd ..\
     rm -rf boost* \
     exit 0
 
-RUN cd /root; git clone https://github.com/steemit/steem -b v0.18.2
+RUN cd /root; git clone https://github.com/steemit/steem -b v0.19.0rc1
 RUN cd /root/steem; git submodule update --init --recursive
 RUN cd /root/steem; mkdir build
 RUN cd /root/steem/build; export CXXFLAGS='-Os -pipe'; cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -56,4 +53,5 @@ RUN emerge zsh
 VOLUME /work
 WORKDIR /work                  
 
+#CMD tail -f /dev/null #
 CMD steemd 1>>/work/steemd.log 2>>/work/steemd.log

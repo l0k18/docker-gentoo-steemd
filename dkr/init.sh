@@ -2,8 +2,8 @@
 export NAME="docker-gentoo-steemd" #NOPRINT
 export DATADIR="`dirname $(realpath $(dirname -- $0))`" #NOPRINT
 source $DATADIR/config #NOPRINT
-echo "l0k1's compleat witness management system v0.1"
-echo
+echo "l0k1's compleat witness management system v0.1" #NOPRINT
+echo #NOPRINT
 echo "Loading command aliases... Type 'halp' to see available commands" #NOPRINT
 
 ### HALP! How to control your $NAME docker container
