@@ -23,7 +23,7 @@ seed-node = 81.89.101.133:2001             # cyrano.witness
 seed-node = steem.global:2001              # klye
 seed-node = seed.esteem.ws:2001            # good-karma
 
-shared-file-size = 20G
+shared-file-size = 36G
 
 enable-plugin = witness 
 
